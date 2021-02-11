@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-class MemberServiceIntegrationTest {
+public class MemberServiceIntegrationTest {
 
     @Autowired
     MemberService memberService;
@@ -25,7 +25,7 @@ class MemberServiceIntegrationTest {
         // given
         Member member = new Member();
         member.setId(2L);
-        member.setName("PPRING");
+        member.setName("SUMMER");
 
         // when
         Long saveId = memberService.join(member);

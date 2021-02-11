@@ -15,16 +15,16 @@ import java.util.Optional;
 public class JdbcTemplateMemberRepository implements MemberRepository {
 
     private final JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert jdbcInsert;
 
     @Autowired
     public JdbcTemplateMemberRepository(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("MEMBER");
     }
 
     @Override
     public Member save(Member member) {
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("MEMBER");
-
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ID", member.getId());
         parameters.put("NAME", member.getName());
