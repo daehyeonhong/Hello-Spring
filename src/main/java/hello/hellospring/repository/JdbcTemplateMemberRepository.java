@@ -23,14 +23,18 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
 
     @Override
     public Member save(Member member) {
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("MEMBER");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("ID", member.getId());
         parameters.put("NAME", member.getName());
-
+        jdbcInsert.execute(parameters);
         Number key = member.getId();
         member.setId(key.longValue());
+        /*
+        Number key = member.getId();
+        member.setId(key.longValue());
+        */
         return member;
     }
 

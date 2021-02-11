@@ -21,11 +21,11 @@ class MemberServiceIntegrationTest {
 
 
     @Test
-    void join() {
+    public void join() {
         // given
         Member member = new Member();
-        member.setId(3L);
-        member.setName("SUN");
+        member.setId(2L);
+        member.setName("PPRING");
 
         // when
         Long saveId = memberService.join(member);
@@ -40,10 +40,12 @@ class MemberServiceIntegrationTest {
     public void validateMemberException() {
         // given
         Member member1 = new Member();
-        member1.setName("Spring");
+        member1.setName("SE");
+        member1.setId(2L);
 
         Member member2 = new Member();
-        member2.setName("Spring");
+        member2.setName("SE");
+        member2.setId(3L);
 
         // when
         memberService.join(member1);
