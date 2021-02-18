@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreateMember</title>
+</head>
+
+<body>
+  <div class="container">
+    <form action="/members/new" method="post">
+      <div class="form-group">
+        <label for="id">id</label>
+        <input type="text" name="id" id="id" placeholder="ID를 입력하세요.">
+        <label for="name">이름</label>
+        <input type="text" name="name" id="name" placeholder="이름을 입력하세요.">
+      </div>
+      <button type="submit">등록</button>
+    </form>
+  </div><!-- /container -->
+
+</body>
+
+</html>
