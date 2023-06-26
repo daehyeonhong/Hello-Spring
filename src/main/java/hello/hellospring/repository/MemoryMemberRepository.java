@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.damain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
