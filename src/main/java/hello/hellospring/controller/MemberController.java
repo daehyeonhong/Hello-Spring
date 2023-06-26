@@ -5,6 +5,7 @@ import hello.hellospring.service.MemberService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -30,5 +31,12 @@ public class MemberController {
         log.info("member={}", member);
         this.memberService.join(member);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/members")
+    public String list(final Model model) {
+        final var members = this.memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
