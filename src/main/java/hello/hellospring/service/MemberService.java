@@ -2,12 +2,14 @@ package hello.hellospring.service;
 
 import hello.hellospring.damain.Member;
 import hello.hellospring.repository.MemberRepository;
-import org.springframework.stereotype.Service;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
+    private static final Logger log = LogManager.getLogger(MemberService.class);
     private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) {
@@ -18,18 +20,31 @@ public class MemberService {
      * 회원 가입
      */
     public Long join(final Member member) {
-        // 같은 이름이 있는 중복 회원은 안 된다.
-        this.validateDuplicateMember(member);
+        final long start = System.currentTimeMillis();
+        try {
+            this.validateDuplicateMember(member);
 
-        this.memberRepository.save(member);
-        return member.getId();
+            this.memberRepository.save(member);
+            return member.getId();
+        } finally {
+            final long finish = System.currentTimeMillis();
+            final long timeMilliseconds = finish - start;
+            log.info("join = {}ms", timeMilliseconds);
+        }
     }
 
     /**
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        return this.memberRepository.findAll();
+        final long start = System.currentTimeMillis();
+        try {
+            return this.memberRepository.findAll();
+        } finally {
+            final long finish = System.currentTimeMillis();
+            final long timeMilliseconds = finish - start;
+            log.info("findMembers = {}ms", timeMilliseconds);
+        }
     }
 
     /**
