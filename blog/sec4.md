@@ -23,3 +23,5 @@
 ### AOP 적용
 - @Controller, @Service, @Repository 빈을 등록할 때 공통 관심 사항을 적용할 수 있도록 해주는 기능이다.
 - AOP와 같은 기능은 SpringConfig에서 설정해주는 것이 좋다.(@ComponentScan 보다)
+- 원하는 곳에 적용할 수 있다.
+- 변경이 필요하면 설정 코드만 변경하면 된다.

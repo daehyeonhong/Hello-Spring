@@ -20,31 +20,17 @@ public class MemberService {
      * 회원 가입
      */
     public Long join(final Member member) {
-        final long start = System.currentTimeMillis();
-        try {
-            this.validateDuplicateMember(member);
+        this.validateDuplicateMember(member);
 
-            this.memberRepository.save(member);
-            return member.getId();
-        } finally {
-            final long finish = System.currentTimeMillis();
-            final long timeMilliseconds = finish - start;
-            log.info("join = {}ms", timeMilliseconds);
-        }
+        this.memberRepository.save(member);
+        return member.getId();
     }
 
     /**
      * 전체 회원 조회
      */
     public List<Member> findMembers() {
-        final long start = System.currentTimeMillis();
-        try {
-            return this.memberRepository.findAll();
-        } finally {
-            final long finish = System.currentTimeMillis();
-            final long timeMilliseconds = finish - start;
-            log.info("findMembers = {}ms", timeMilliseconds);
-        }
+        return this.memberRepository.findAll();
     }
 
     /**
