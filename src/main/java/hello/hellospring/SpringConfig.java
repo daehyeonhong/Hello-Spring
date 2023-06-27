@@ -1,29 +1,26 @@
 package hello.hellospring;
 
-import hello.hellospring.repository.JdbcMemberRepository;
-import hello.hellospring.repository.JdbcTemplateMemberRepository;
+import hello.hellospring.aop.TimeTraceAOP;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
-
 @Configuration
 public class SpringConfig {
-    private final DataSource dataSource;
+    private final MemberRepository memberRepository;
 
-    public SpringConfig(final DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringConfig(final MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(this.memberRepository());
+        return new MemberService(this.memberRepository);
     }
 
-    @Bean
-    public MemberRepository memberRepository() {
-        return new JdbcTemplateMemberRepository(dataSource);
-    }
+//    @Bean
+//    public TimeTraceAOP timeTraceAop() {
+//        return new TimeTraceAOP();
+//    }
 }
